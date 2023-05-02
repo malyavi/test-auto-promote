@@ -5,10 +5,10 @@ on:
       - closed
     branches:
       - main
-if: github.event.pull_request.merged == true
 
 jobs:
   auto-pipeline-promotion:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Run Pipeline Promotion
