@@ -1,14 +1,11 @@
 name: Automatic Pipeline Promotion
 on:
   pull_request:
-    types:
-      - closed
     branches:
       - main
 
 jobs:
   auto-pipeline-promotion:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Run Pipeline Promotion
@@ -17,6 +14,7 @@ jobs:
           script: |
             const promotionBranch = 'staging';
             const {repo, owner} = context.repo;
+            const payload = context.payload;
 
 
             const commit = await github.rest.repos.getCommit({
