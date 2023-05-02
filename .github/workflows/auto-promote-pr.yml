@@ -18,6 +18,7 @@ jobs:
             const promotionBranch = 'staging';
             const {repo, owner} = context.repo;
             const payload = context.payload;
+            console.log('payload', payload);
 
 
             const commit = await github.rest.repos.getCommit({
@@ -25,6 +26,7 @@ jobs:
               repo,
               ref: context.sha
             });
+            console.log('commit', commit);
             const newBranchRef = `auto-promotion/${payload.pull_request.head.ref}`;
             const tempBranchRef = `${newBranchRef}-temp`;
 
