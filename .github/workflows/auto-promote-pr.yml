@@ -1,8 +1,6 @@
 name: Automatic Pipeline Promotion
 on:
   pull_request:
-    types:
-      - closed
     branches:
       - main
 
@@ -17,6 +15,7 @@ jobs:
           script: |
             const promotionBranch = 'staging';
             const {repo, owner} = context.repo;
+            const payload = context.payload;
 
 
             const commit = await github.rest.repos.getCommit({
